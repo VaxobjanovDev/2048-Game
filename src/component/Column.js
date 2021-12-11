@@ -5,7 +5,6 @@ const Column = ({ num }) => {
   return (
     <div
       style={{
-				// transition:"all easeOut 1s",
         background: color(num),
         color: num === 2 || num === 4 ? "#645B52" : "#F7F4EF",
       }}
