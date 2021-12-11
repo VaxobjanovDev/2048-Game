@@ -5,11 +5,10 @@ import "./Main.css";
 import { useEvent } from "./myHooks";
 
 const Main = () => {
-  let ARROW_LEFT = 37; 
+  let ARROW_LEFT = 37;
   let ARROW_RIGHT = 39;
   let ARROW_UP = 38;
   let ARROW_DOWN = 40;
- 
 
   const [data, setData] = useState([
     [0, 0, 0, 0],
@@ -56,7 +55,7 @@ const Main = () => {
   // Swipe left
 
   const swipeLeft = (check) => {
-    console.log("SwipeLeft")
+    console.log("SwipeLeft");
 
     let oldBox = data;
     let newArray = cloneDeep(data);
@@ -83,11 +82,11 @@ const Main = () => {
         } else if (b[slow] !== 0 && b[fast] !== 0) {
           if (b[slow] === b[fast]) {
             b[slow] = b[slow] + b[fast];
-            console.log(b[slow])
-            console.log(score)
+            console.log(b[slow]);
+            console.log(score);
             if (b[slow] !== 0) {
               setScore(score + b[slow]);
-              b[fast]=0
+              b[fast] = 0;
             }
             b[fast] = 0;
             fast = slow + 1;
@@ -110,7 +109,7 @@ const Main = () => {
   };
 
   const swipeRight = (check) => {
-    console.log("SwipeRight")
+    console.log("SwipeRight");
 
     let oldData = data;
     let newArray = cloneDeep(data);
@@ -137,8 +136,8 @@ const Main = () => {
         } else if (b[slow] !== 0 && b[fast] !== 0) {
           if (b[slow] === b[fast]) {
             b[slow] = b[slow] + b[fast];
-            if(b[slow]!==0){
-              setScore(score+b[slow])
+            if (b[slow] !== 0) {
+              setScore(score + b[slow]);
             }
             b[fast] = 0;
             fast = slow - 1;
@@ -161,7 +160,7 @@ const Main = () => {
   };
 
   const swipeUp = (check) => {
-    console.log("SwipeUp")
+    console.log("SwipeUp");
     let b = cloneDeep(data);
     let oldData = JSON.parse(JSON.stringify(data));
 
@@ -185,7 +184,7 @@ const Main = () => {
         } else if (b[slow][i] !== 0 && b[fast][i] !== 0) {
           if (b[slow][i] === b[fast][i]) {
             b[slow][i] = b[slow][i] + b[fast][i];
-            setScore(score+b[slow][i])
+            setScore(score + b[slow][i]);
             b[fast][i] = 0;
             fast = slow + 1;
             slow++;
@@ -207,8 +206,8 @@ const Main = () => {
     }
   };
 
-  const swipeDown = (check) => { 
-    console.log("SwipeDown")
+  const swipeDown = (check) => {
+    console.log("SwipeDown");
     let b = cloneDeep(data);
     let oldData = JSON.parse(JSON.stringify(data));
 
@@ -234,7 +233,7 @@ const Main = () => {
           if (b[slow][i] === b[fast][i]) {
             b[slow][i] = b[slow][i] + b[fast][i];
             console.log(b[slow][i]);
-            setScore(score+b[slow][i])
+            setScore(score + b[slow][i]);
             b[fast][i] = 0;
             fast = slow - 1;
             slow--;
@@ -280,13 +279,13 @@ const Main = () => {
     if (gameOver) {
       return;
     }
-    // if(event.key ==="Enter"){
-    //   swipeDown()
-    // }
+    if (event.key === "Enter") {
+      swipeDown();
+    }
     switch (event.keyCode) {
-      // case ARROW_LEFT:
-      //   swipeLeft();
-      //   break;
+      case ARROW_LEFT:
+        swipeLeft();
+        break;
       case ARROW_UP:
         swipeUp();
         break;
@@ -327,11 +326,10 @@ const Main = () => {
   };
 
   useEffect(() => {
-    // window.addEventListener("onkeypress",handleKeyDown)
     initialize();
   }, []);
 
-  useEvent("keyup", handleKeyDown);
+  useEvent("keydown", handleKeyDown);
 
   return (
     <div className="container">
