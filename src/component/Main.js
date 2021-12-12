@@ -20,6 +20,7 @@ const Main = () => {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState([]);
+
   // Initialize
   const initialize = () => {
     let newBox = cloneDeep(data);
@@ -136,9 +137,7 @@ const Main = () => {
         } else if (b[slow] !== 0 && b[fast] !== 0) {
           if (b[slow] === b[fast]) {
             b[slow] = b[slow] + b[fast];
-            if (b[slow] !== 0) {
-              setScore(score + b[slow]);
-            }
+            setScore(score + b[slow]);
             b[fast] = 0;
             fast = slow - 1;
             slow--;
@@ -279,9 +278,7 @@ const Main = () => {
     if (gameOver) {
       return;
     }
-    if (event.key === "Enter") {
-      swipeDown();
-    }
+
     switch (event.keyCode) {
       case ARROW_LEFT:
         swipeLeft();
@@ -329,7 +326,7 @@ const Main = () => {
     initialize();
   }, []);
 
-  useEvent("keydown", handleKeyDown);
+  useEvent("keyup", handleKeyDown);
 
   return (
     <div className="container">
