@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Simple 2048 game with React js
+
+You can see this project https://2048-games.netlify.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
